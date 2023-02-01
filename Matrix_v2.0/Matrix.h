@@ -7,6 +7,8 @@ private:
 	int size;
 	int** arr;
 
+	const Matrix& getBiggestMatrixByPairweis—omparison(const Matrix& obj);
+
 public:
 
 	Matrix();

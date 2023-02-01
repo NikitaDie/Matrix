@@ -1,6 +1,28 @@
 #include "Matrix.h"
 #include <cassert>
 
+const Matrix& Matrix::getBiggestMatrixByPairweis—omparison(const Matrix& matrix) {	//can use only when sizes are equal
+	
+	int tmp_points{ 0 };
+
+	for (int i{ 0 }; i < this->size; ++i) {
+		for (int j{ 0 }; j < this->size; ++j) {
+			if (this->arr[i][j] > matrix.arr[i][j]) ++tmp_points;
+		}
+	}
+
+	if (tmp_points > this->size / 2) return *this;
+	else if (tmp_points < this->size / 2) return matrix;
+	else {
+		for (int i{ 0 }; i < this->size; ++i) {
+			for (int j{ 0 }; j < this->size; ++j) {
+				if (this->arr[i][j] > matrix.arr[i][j]) return *this;
+				else if (this->arr[i][j] < matrix.arr[i][j]) return matrix;
+			}
+		}
+	}
+}
+
 Matrix::Matrix() :
 	size{ 0 },
 	arr{ nullptr }
@@ -492,12 +514,18 @@ bool Matrix::operator>(const Matrix& matrix)
 {
 	if (this->size > matrix.size) return true;
 
-	return false;
+	if (this->size < matrix.size) return false;
+
+	if (this->size == matrix.size || *this != matrix) {
+		if (&getBiggestMatrixByPairweis—omparison(matrix) == &matrix) return false;
+	}
+
+	return true;
 }
 
 bool Matrix::operator>=(const Matrix& matrix)
 {
-	if (this->size > matrix.size or *(this) == matrix)
+	if (*this > matrix or *this == matrix)
 		return true;
 
 	return false;
@@ -507,12 +535,18 @@ bool Matrix::operator<(const Matrix& matrix)
 {
 	if (this->size < matrix.size) return true;
 
+	if (this->size > matrix.size) return false;
+
+	if (this->size == matrix.size || *this != matrix) {
+		if (&getBiggestMatrixByPairweis—omparison(matrix) == &matrix) return true;
+	}
+
 	return false;
 }
 
 bool Matrix::operator<=(const Matrix& matrix)
 {
-	if (this->size < matrix.size or *(this) == matrix)
+	if (*this < matrix or *this == matrix)
 		return true;
 
 	return false;
@@ -592,6 +626,8 @@ Matrix::operator int()
 			tmp_sum += this->arr[i][j];
 		}
 	}
+
+	return tmp_sum; //?
 }
 
 Matrix::~Matrix()
