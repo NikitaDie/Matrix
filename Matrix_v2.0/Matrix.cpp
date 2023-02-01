@@ -432,6 +432,36 @@ Matrix Matrix::operator--(int) //postfix
 
 // bool operators
 
+bool Matrix::operator==(const int element)
+{
+	return (int)*this == element;
+}
+
+bool Matrix::operator!=(const int element)
+{
+	return (int)*this != element;
+}
+
+bool Matrix::operator>(const int element)
+{
+	return (int)*this >= element;
+}
+
+bool Matrix::operator>=(const int element)
+{
+	return (int)*this >= element;
+}
+
+bool Matrix::operator<(const int element)
+{
+	return (int)*this < element;
+}
+
+bool Matrix::operator<=(const int element)
+{
+	return (int)*this <= element;
+}
+
 bool Matrix::operator==(const Matrix& matrix) 
 {
 	for (int i = 0; i < matrix.size; ++i) {
@@ -551,6 +581,19 @@ const int& Matrix::operator()(int row, int col) const
 	return this->arr[row][col];
 }
 
+Matrix::operator int()
+{
+	if (size == 0) return 0;
+
+	int tmp_sum{ 0 };
+
+	for (int i{ 0 }; i < this->size; ++i) {
+		for (int j{ 0 }; j < this->size; ++j) {
+			tmp_sum += this->arr[i][j];
+		}
+	}
+}
+
 Matrix::~Matrix()
 {
 	if (this->arr != nullptr) {
@@ -561,3 +604,4 @@ Matrix::~Matrix()
 		delete[] this->arr;
 	}
 }
+

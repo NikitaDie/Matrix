@@ -74,6 +74,18 @@ public:
 
 	Matrix operator--(int);
 
+	bool operator==(const int element);
+
+	bool operator!=(const int element);
+
+	bool operator>(const int element);
+
+	bool operator>=(const int element);
+
+	bool operator<(const int element);
+
+	bool operator<=(const int element);
+
 	bool operator==(const Matrix& matrix);
 
 	bool operator!=(const Matrix& matrix);
@@ -97,6 +109,8 @@ public:
 	int& operator()(int row, int col);
 
 	const int& operator()(int row, int col) const;
+
+	operator int();
 
 	~Matrix();
 

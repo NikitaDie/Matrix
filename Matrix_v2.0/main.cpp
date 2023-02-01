@@ -49,9 +49,9 @@ int main()
 	//std::cin >> a;
 	//a++;
 
-	std::cout << (b /= a);
+	std::cout << (b += a);
 	std::cout << a;
-	std::cout << b;
+	std::cout << (b > 2);
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
